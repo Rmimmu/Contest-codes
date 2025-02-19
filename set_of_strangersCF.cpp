@@ -194,12 +194,12 @@ void faltu( T arg, const hello &... rest) {
 }
  
  
-int arr[50000][50000];
+
 
 void solve(){
 int n,m;
 cin>>n>>m;
-
+vector arr((n), vi (m));
 for(int i=0;i<n;i++) {
     for(int j=0;j<m;j++) cin>>arr[i][j];
 }
@@ -207,19 +207,22 @@ map<int,int>check;
 for(int i=0;i<n;i++) {
     for(int j=0;j<m;j++) {
        if((j+1<m && arr[i][j]==arr[i][j+1] ) || (j-1>=0 && arr[i][j]==arr[i][j-1]) || (i+1<n&& arr[i][j]==arr[i+1][j])||( i-1>=0 && arr[i][j]==arr[i-1][j]))  check[arr[i][j]] =2;
-       else check[arr[i][j]] =1;
+       else if(!check[arr[i][j]]) check[arr[i][j]] =1;
     }
 }
 
-int mx=0;
+int mn = INT_MAX;
 int sum=0;
 for(auto &u:check){
-    if(u.second>mx) mx =u.second;
+   
     sum+=u.second;
 }
 
+for(auto &u:check){
+    mn = min(mn, sum-u.second);
+}
 
-cout<<sum-mx;
+cout<<mn;
 
 }
 signed main()
