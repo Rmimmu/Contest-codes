@@ -207,11 +207,11 @@ cin>>n>>x;
 
 ll ans=0;
 
-for(int i=0;i<n;i++){
+for(ll i=0;i<n;i++){
     ans |= i;
 }
 if(ans==x){
-    for(int i=0;i<n;i++) cout<<i<<" ";
+    for(ll i=0;i<n;i++) cout<<i<<" ";
     return;
 }
 
@@ -219,8 +219,8 @@ vl v;
 
 
 
-for(int i=0;i<n-1;i++){
-    if(i|x==x) v.push_back(i);
+for(ll i=0;i<n-1;i++){
+    if((i|x)==x) v.push_back(i);
     else break;
 }
 while(v.size()!=n) v.push_back(x);
